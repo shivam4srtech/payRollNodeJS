@@ -129,6 +129,82 @@ router.get('/about', (req, res) => {
 });
 
 
+
+/**
+ * GET /
+ * Solution
+*/
+router.get('/solution', (req, res) => {
+  res.render('solution', {
+    currentRoute: '/solution'
+  });
+});
+
+/**
+ * GET /
+ * blog
+*/
+router.get('/blog', (req, res) => {
+  res.render('blog', {
+    currentRoute: '/blog'
+  });
+});
+
+
+/**
+ * GET /
+ * all-blogs
+*/
+router.get('/all-blogs', (req, res) => {
+  res.render('all-blogs', {
+    currentRoute: '/all-blogs'
+  });
+});
+
+
+/**
+ * GET /
+ * careers
+*/
+router.get('/careers', (req, res) => {
+  res.render('careers', {
+    currentRoute: '/careers'
+  });
+});
+
+
+/**
+ * GET /
+ * job-application
+*/
+router.get('/jobs', (req, res) => {
+  res.render('job-application', {
+    currentRoute: '/job-application'
+  });
+});
+
+
+/**
+ * GET /
+ * contact
+*/
+router.get('/contact', (req, res) => {
+  res.render('contact', {
+    currentRoute: '/contact'
+  });
+});
+
+
+/**
+ * GET /
+ * tankYou
+*/
+router.get('/responce-submitted', (req, res) => {
+  res.render('thankYou', {
+    currentRoute: '/thankYou'
+  });
+});
+
 // function insertPostData () {
 //   Post.insertMany([
 //     {

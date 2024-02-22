@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:wght@300;400;600;700&display=swap');
 :root {
   --black: #1c1c1c;
   --gray: #7E7E7E;
@@ -10,28 +10,49 @@
   --font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
   --font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
   --border-radius: 10px;
-}
+} 
 
-body {
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+a{
+  text-decoration: none;
+}
+/* body {
   font-family: 'Poppins', sans-serif;
   color: var(--black);
   font-size: var(--font-size-base);
   background-color: #FAF5EE;
   background-image: url("/img/img-noise-361x370.png");
   margin: 0;
+} */
+.adminLogin{
+  max-width: 50%;
+  margin: auto;
 }
+@media(max-width:600px){
+  .adminLogin{
+    max-width: 90%;
+  }
+}
+.text-center{
+  text-align: center;
+}
+.adminLogin label{
+ margin-bottom: .5rem;
+ display: inline-block;
+}
+.adminLogin a { color: var(--black); }
+.adminLogin h1 { font-size: var(--font-size-xl); }
+.adminLogin h2 { font-size: var(--font-size-lg); }
+.adminLogin h3 { font-size: var(--font-size-md); }
 
-a { color: var(--black); }
-h1 { font-size: var(--font-size-xl); }
-h2 { font-size: var(--font-size-lg); }
-h3 { font-size: var(--font-size-md); }
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="search"],
-select,
-textarea {
+.adminLogin input[type="text"],
+.adminLogin input[type="email"],
+.adminLogin input[type="password"],
+.adminLogin input[type="search"],
+.adminLogin select,
+.adminLogin textarea {
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   display: block;
@@ -57,21 +78,21 @@ textarea {
 }
 
 
-img {
+/* img {
   width: 100%;
   height: auto;
-}
+} */
 
 /* Layout */
-.container {
+/* .container {
   max-width: 982px;
   margin: 0 auto;
   padding: 0 10px;
-}
+} */
 
-.main {
+/* .main {
   padding: 20px 0;
-}
+} */
 
 /* Hero Section */
 .hero-image {
@@ -257,10 +278,7 @@ img {
 
 
 /* Footer */
-.footer {
-  margin: 4rem;
-  text-align: center;
-}
+
 
 
 /* Dashboard Admin */
@@ -337,4 +355,15 @@ img {
 
 .pagination:hover {
   color: var(--black);
+}
+
+/* =========Admin Header=========== */
+.adminHeader{
+  width: 100%;
+  max-width: 100%;
+
+}
+.adminHeader .logBtn{
+ display: inline-block;
+ font-weight: 500;
 }

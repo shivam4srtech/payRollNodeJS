@@ -1,21 +1,21 @@
 <div class="admin-title">
   <h2>Posts</h2>
-  <a href="/add-post" class="button">+ Add New</a>
+  <a href="/add-post" class="button addNew">+ Add New</a>
 </div>
 
 <ul class="admin-posts">
 
   <% data.forEach(post => { %>
    
-    <li>
-      <a href="/post/<%= post._id %>">
+    <li class="listPost">
+      <a href="/post/<%= post._id %>" class="postTitle">
         <%= post.title %> &nearr;
       </a>
       <div class="admin-post-controls">
-        <a href="/edit-post/<%= post._id %>" class="btn">Edit</a>
+        <a href="/edit-post/<%= post._id %>" class="btn editBtn">Edit</a>
 
         <form action="/delete-post/<%= post._id %>?_method=DELETE" method="POST">
-          <input type="submit" value="Delete" class="btn-delete btn">
+          <input type="submit" value="Delete" class="deleteBtn btn">
         </form>
 
       </div>
@@ -24,3 +24,44 @@
 
   <% }) %>
 </ul>
+<style>
+   .admin-title{
+     padding: 0rem 2rem;
+   }
+   .admin-title .addNew{
+    padding: .5rem 1rem;
+    background-color: #34a853;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: .5px;
+    border-radius: 4px;
+   }
+   .admin-posts{
+    padding: 0rem 2rem;
+   }
+   .admin-posts .deleteBtn{
+    background-color: #b30000;
+    letter-spacing: .5px;
+    font-weight: 500;
+    border-radius: 4px;
+   }
+   .admin-posts .editBtn{
+     background-color: #ffc107;
+     color: #333;
+     letter-spacing: .5px;
+    font-weight: 500;
+    border-radius: 4px;
+   }
+   .postTitle{
+    font-weight: 500;
+    font-size: .99rem;
+    letter-spacing: .5px;
+    color: #000;
+   }
+   .pg-footer{
+    display: none;
+   }
+   .listPost{
+    border-bottom: 1px solid #9999994a;
+   }
+</style>

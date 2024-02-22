@@ -1,11 +1,15 @@
 require('dotenv').config();
 
 const express = require('express');
+const nodemailer = require('nodemailer');
+const multer = require('multer');
+const bodyparser = require('body-parser');
 const expressLayout = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const path = require('path');
 
 const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routeHelpers');
@@ -28,10 +32,11 @@ app.use(session({
   store: MongoStore.create({
     mongoUrl: process.env.MONGODB_URI
   }),
-  //cookie: { maxAge: new Date ( Date.now() + (3600000) ) } 
+  
 }));
 
 app.use(express.static('public'));
+app.use('/public/',express.static(path.join('./public/')));
 
 // Templating Engine
 app.use(expressLayout);
@@ -44,6 +49,75 @@ app.locals.isActiveRoute = isActiveRoute;
 
 app.use('/', require('./server/routes/main'));
 app.use('/', require('./server/routes/admin'));
+// Routes
+app.get("/solution",function(req, res){
+  res.render("solution");
+})
+
+
+// Enquiry form
+app.post("/contact", function(req, res){
+  const userName = req.body.userName;
+  const companyName = req.body.companyName;
+  const cityName = req.body.cityName;
+  const empNum = req.body.empNum;
+  const usereEmail = req.body.usereEmail;
+  const phoneNum = req.body.phoneNum;
+  const message = req.body.message;
+  var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth:{
+          user: 'Your Email',
+          pass: 'Your Pass'
+      }
+  })
+  var mailOption = {
+      form: 'shivam.srtech@gmail.com',
+      to: 'shivam.srtech@gmail.com',
+      cc: 'shivam.srtech@gmail.com',
+      subject: 'New enquiry from ' + ' ' +  userName,
+      html: ` <h2>New Enquiry form ${userName}</h2>
+              <h4> Name</h4> <p> ${userName}</p>
+              <h4> Message</h4> <p> ${message}</p>
+              <h4> Email</h4> <p> ${usereEmail}</p>
+              <h4> Company Name</h4> <p> ${companyName}</p>
+              <h4> Phone Number </h4> <p> ${phoneNum}</p>
+              <h4> City </h4> <p> ${cityName}</p>
+              <h4> Number of Employee </h4> <p> ${empNum}</p>`
+  };
+  var mailOptionUser ={
+      from: 'shivam.srtech@gmail.com',
+      to: req.body.usereEmail,
+      cc: '',
+      subject: 'Thank You for your Enquiry' + ' ' +  userName,
+      html: `<h2> Hello ${userName}, your enquiry has been recorded a payRoll representative will respond you shortly </h2>
+             <h3>Also you can directly approch to our team on phone call </h3>
+             <a class="footer-call-to-action-link" href="tel:63003 47380" target="_self">+91 63003 47380</a>
+             <p>Team charteredPayRoll</p> `
+  } 
+  transporter.sendMail(mailOptionUser, function(error, info){
+      if(error){
+          console.log(error);
+      }
+      else{
+          res.redirect('/responce-submitted');
+          console.log("email sent" + info.response);
+      }
+  })
+  transporter.sendMail(mailOption, function(error, info){
+      if(error){
+          console.log(error);
+      }
+      else{
+          res.redirect('/responce-submitted');
+          console.log("email sent" + info.response);
+      }
+  })
+});
+
+
+
+
 
 app.listen(PORT, ()=> {
   console.log(`App listening on port ${PORT}`);
