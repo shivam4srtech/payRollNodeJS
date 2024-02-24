@@ -204,6 +204,15 @@ router.get('/responce-submitted', (req, res) => {
     currentRoute: '/thankYou'
   });
 });
+/**
+ * GET /
+ * comment-submitted
+*/
+router.get('/feedback-submitted', (req, res) => {
+  res.render('commentResponce', {
+    currentRoute: '/commentResponce'
+  });
+});
 
 // function insertPostData () {
 //   Post.insertMany([

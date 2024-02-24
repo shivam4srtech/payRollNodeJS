@@ -67,12 +67,13 @@ app.post("/contact", function(req, res){
   var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth:{
-          user: 'Your Email',
-          pass: 'Your Pass'
-      }
+        user: 'shivam.srtech@gmail.com',
+        pass: 'xcas lmgz ztan txaw'
+    }
+
   })
   var mailOption = {
-      form: 'shivam.srtech@gmail.com',
+      form:'shivam.srtech@gmail.com',
       to: 'shivam.srtech@gmail.com',
       cc: 'shivam.srtech@gmail.com',
       subject: 'New enquiry from ' + ' ' +  userName,
@@ -104,12 +105,68 @@ app.post("/contact", function(req, res){
           console.log("email sent" + info.response);
       }
   })
-  transporter.sendMail(mailOption, function(error, info){
+  transporter.sendMail(mailOptionComment, function(error, info){
       if(error){
           console.log(error);
       }
       else{
           res.redirect('/responce-submitted');
+          console.log("email sent" + info.response);
+      }
+  })
+});
+
+// Receive BlogPost Comment
+app.post("/post", function(req, res){
+  const comment = req.body.comment;
+  const userComment = req.body.userComment;
+  const commentEmail = req.body.commentEmail;
+  const website = req.body.website;
+  
+  var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth:{
+        user: 'shivam.srtech@gmail.com',
+        pass: 'xcas lmgz ztan txaw'
+    }
+
+  })
+  var mailOptionComment = {
+      form:'shivam.srtech@gmail.com',
+      to: 'shivam.srtech@gmail.com',
+      cc: 'shivam.srtech@gmail.com',
+      subject: 'New comment from ' + ' ' +  userComment,
+      html: ` <h2>New comment form ${userComment}</h2>
+              <h4> Name</h4> <p> ${userComment}</p>
+              <h4> Comment Message</h4> <p> ${comment}</p>
+              <h4> Email</h4> <p> ${commentEmail}</p>
+              <h4> User Website </h4> <p> <a href='${website}'>${website}</a></p>`
+  };
+  var mailOptionUserComment ={
+      from: 'shivam.srtech@gmail.com',
+      to: req.body.commentEmail,
+      cc: '',
+      subject: 'Thank You for your Feedback' + ' ' +  userComment,
+      html: `<h2> Hello ${userComment}, your Comment/ Feedback has been received thank you for you time</h2>
+             <h3>For any further assistance you can directly approch to our team on phone call </h3>
+             <a class="footer-call-to-action-link" href="tel:63003 47380" target="_self">+91 63003 47380</a>
+             <p>Team charteredPayRoll</p> `
+  } 
+  transporter.sendMail(mailOptionUserComment, function(error, info){
+      if(error){
+          console.log(error);
+      }
+      else{
+          res.redirect('/feedback-submitted');
+          console.log("email sent" + info.response);
+      }
+  })
+  transporter.sendMail(mailOptionComment, function(error, info){
+      if(error){
+          console.log(error);
+      }
+      else{
+          res.redirect('/feedback-submitted');
           console.log("email sent" + info.response);
       }
   })

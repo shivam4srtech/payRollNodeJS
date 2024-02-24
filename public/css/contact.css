@@ -221,6 +221,9 @@ body{
     text-transform: capitalize;
     letter-spacing: .5px;
     font-size: .9rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
 }
  @media(max-width: 600px){
     .fliudBox{

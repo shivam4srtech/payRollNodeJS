@@ -1,2 +1,101 @@
-<h1><%= data.title %></h1>
-<article class="article"><%= data.body %></article>
+ <head>
+     <link rel="stylesheet" href="../public/css/blog.css">
+ </head>
+
+
+
+<div class="container col-sm-10 col-md-10 col-lg-8 shadow-sm blog-box">
+    <div class="row breadcrumbs mx-auto">
+        <span><a href="/">charteredpayroll</a> <i class="fa fa-angle-right" aria-hidden="true"></i> <%= data.title %></span> 
+    </div>
+    <div class="row justify-content-center mx-auto">
+        <div class=" col-lg-8 titleimage shadow">
+            <img src="../public/images/business-4.jpg" alt="">
+        </div>
+    </div>
+    <div class="socialIcons mt-2">
+        <div class="parent">
+            <div class="child child-1">
+              <a href="#000">
+                <button class="button btn-1 twit">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </button>
+              </a>
+            </div>
+            <div class="child child-2">
+                <a href="https://www.instagram.com/charteredpayroll">
+                    <button class="button btn-2 insta">
+                        <i class="fa-brands fa-instagram"></i>
+                    </button>
+                </a>
+            </div>
+            <div class="child child-3">
+                <a href="#000">
+                    <button class="button btn-3 fb">
+                        <i class="fa-brands fa-facebook"></i>
+                    </button>
+                </a>
+            </div>
+            <div class="child child-4">
+                <a href="#000">
+                    <button class="button btn-4 whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row blogtitle mx-auto ">
+        <h2><%= data.title %></h2>
+    </div>
+    
+    <div class="row blogcontent mx-auto">
+        <p><%= data.body %></p>
+    </div>
+</div>
+
+<!-- ==================Comment Section=========================== -->
+<div class="container col-sm-10 col-md-10 col-lg-8 shadow-sm commentbox">
+    <div class="row comment mx-auto">
+        <h3>Leave a Reply</h3>
+        <p>Your email address will not be published. Required fields are marked <span>*</span></p>
+    </div>
+   <div class="row input mx-auto">
+        <form class="d-block" action="/post" method="POST">
+            <textarea name="comment" class="col-sm-12 col-md-10 col-lg-10 d-block" rows="10" placeholder="Input your thought ..." required></textarea>
+            <label for="name" class="d-block"><i class="fa-regular fa-user"></i> Name <span>*</span></label>
+            <input type="text" name="userComment" placeholder="Name" required class="col-sm-12 col-md-10 col-lg-10 d-block">
+            <label for="email" class="d-block"><i class="fa-regular fa-envelope"></i> Email <span>*</span></label>
+            <input type="email" name="commentEmail" class="col-sm-12 col-md-10 col-lg-10 d-block" placeholder="Enter your email address" required>
+            <label for="url" class="d-block"><i class="fa-solid fa-globe"></i> Website</label>
+            <input type="text" name="website" class="col-sm-12 col-md-10 col-lg-10 d-block" placeholder="website url">
+            <button type="submit" onclick="">Post Comment</button>
+        </form>
+   </div>
+</div>
+
+<!-- ============SubscribeBox================== -->
+<section class="subscribeBox">
+    <div class="row">
+        <div class="col-lg-5">
+            <div>
+                <h4>Receive our top-notch content directly to your email.</h4>
+                <p>Your inbox's go-to source for valuable tips, engaging stories, and essential resources—all curated for your needs and wants!</p>
+            </div>
+        </div>
+        <div class="col-lg-7 subscribeBtn">
+            <div>
+                <div class="input-group">
+                    <input type="email" class="input" id="Email" name="Email" placeholder="example@email.com" autocomplete="off" required>
+                    <input class="button--submit" value="Subscribe" type="submit">
+                </div>
+                <small class="privacy-message">
+                    We respect your privacy! Information provided is solely used for content and updates. Unsubscribe anytime. Refer to our <a href="#000">privacy policy</a> for more details
+                </small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <h1><%= data.title %></h1>
+<article class="article"><%= data.body %></article> -->
